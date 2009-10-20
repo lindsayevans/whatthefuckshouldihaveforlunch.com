@@ -22,7 +22,6 @@ namespace :wtf do
 		hashtag = '#lunch'
 		hashtag_regexp = Regexp.new('[\s]*' + hashtag, true)
 
-
 		client = Grackle::Client.new
 		client.api = :search
 
@@ -35,10 +34,9 @@ namespace :wtf do
 		results = client.search?(:q => 'from:' + from_username + ' ' + hashtag, :since_id => since_id).results
 		results.each do |result|
 
-			start_date = result.created_at
 			message = result.text.gsub(hashtag_regexp, '')
 			food = message.en.sentence.object || message.en.sentence.subject || message
-			tweet_attributes = {:food => food.to_s, :message => message.to_s, :twitter_status_id => result.id, :created_at => DateTime.now}
+			tweet_attributes = {:food => food.to_s, :message => message.to_s, :twitter_status_id => result.id, :created_at => result.created_at}
 
 			#puts YAML::dump(tweet_attributes)
 			meal = Meal.create tweet_attributes
