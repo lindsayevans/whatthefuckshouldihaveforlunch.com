@@ -6,6 +6,13 @@ namespace :wtf do
 
 		# Dependencies
 		require 'grackle'
+		require 'linguistics'
+
+		# Brett: What?
+		# Jules: "What" ain't no country I ever heard of! They speak English in "What"?!
+		# Brett: What?
+		# Jules: English, motherfucker! Do you speak it?!
+		Linguistics::use(:en)
 
 		# Models
 		#require 'lib/Meal'
@@ -32,8 +39,8 @@ puts YAML::dump(results)
 
 			start_date = result.created_at
 			message = result.text.gsub(hashtag_regexp, '')
-
-			tweet_attributes = {:message => message, :twitter_status_id => result.id, :created_at => DateTime.now}
+			food = message.en.sentence.object || message.en.sentence.subject || message
+			tweet_attributes = {:food => food.to_s, :message => message.to_s, :twitter_status_id => result.id, :created_at => DateTime.now}
 
 			puts YAML::dump(tweet_attributes)
 			#meal = Meal.create tweet_attributes
