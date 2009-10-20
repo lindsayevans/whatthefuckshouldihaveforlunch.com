@@ -27,14 +27,12 @@ namespace :wtf do
 		client.api = :search
 
 		latest_meal = Meal.find_latest
-		latest_meal = nil
 
 		if !latest_meal.nil?
-			since_id = latest_meal.twitter_status_id
+			since_id = latest_meal[:twitter_status_id]
 		end
-puts 'from:' + from_username + ' ' + hashtag
+
 		results = client.search?(:q => 'from:' + from_username + ' ' + hashtag, :since_id => since_id).results
-puts YAML::dump(results)
 		results.each do |result|
 
 			start_date = result.created_at
@@ -42,7 +40,7 @@ puts YAML::dump(results)
 			food = message.en.sentence.object || message.en.sentence.subject || message
 			tweet_attributes = {:food => food.to_s, :message => message.to_s, :twitter_status_id => result.id, :created_at => DateTime.now}
 
-			puts YAML::dump(tweet_attributes)
+			#puts YAML::dump(tweet_attributes)
 			meal = Meal.create tweet_attributes
 		end
 
