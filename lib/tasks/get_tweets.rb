@@ -15,7 +15,7 @@ namespace :wtf do
 		Linguistics::use(:en)
 
 		# Models
-		#require 'lib/Meal'
+		require 'lib/Meal'
 
 		from_username = 'lindsayevans'
 
@@ -26,7 +26,7 @@ namespace :wtf do
 		client = Grackle::Client.new
 		client.api = :search
 
-		#latest_meal = Meal.find_latest
+		latest_meal = Meal.find_latest
 		latest_meal = nil
 
 		if !latest_meal.nil?
@@ -43,7 +43,7 @@ puts YAML::dump(results)
 			tweet_attributes = {:food => food.to_s, :message => message.to_s, :twitter_status_id => result.id, :created_at => DateTime.now}
 
 			puts YAML::dump(tweet_attributes)
-			#meal = Meal.create tweet_attributes
+			meal = Meal.create tweet_attributes
 		end
 
 	end
