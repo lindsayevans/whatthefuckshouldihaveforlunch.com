@@ -19,8 +19,7 @@ namespace :wtf do
 
 		from_username = 'lindsayevans'
 
-#		hashtag = '#lunch'
-		hashtag = ''
+		hashtag = '#lunch'
 		hashtag_regexp = Regexp.new('[\s]*' + hashtag, true)
 
 
