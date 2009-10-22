@@ -4,6 +4,11 @@ class Meal
 	self.all.last
     end
 
+    def Meal.find_random
+	all = self.all
+	all[rand(all.length)]
+    end
+
     def Meal.create attributes
 	self.save(self.all << attributes)
     end
