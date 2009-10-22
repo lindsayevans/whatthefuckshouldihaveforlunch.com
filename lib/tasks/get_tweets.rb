@@ -12,8 +12,8 @@ namespace :wtf do
 
 		from_username = 'lindsayevans'
 
-		hashtag = '#lunch'
-		cleanup_regexp = Regexp.new('[\s]*' + hashtag, true)
+		search_query = 'from:' + from_username + ' #lunch'
+		cleanup_regexp = Regexp.new('[\s]*#lunch', true)
 
 		client = Grackle::Client.new
 		client.api = :search
@@ -23,7 +23,7 @@ namespace :wtf do
 
 		since_id = latest_meal.nil? ? nil : latest_meal[:twitter_status_id]
 
-		results = client.search?(:q => 'from:' + from_username + ' ' + hashtag, :since_id => since_id).results
+		results = client.search?(:q => search_query, :since_id => since_id).results
 puts 'from:' + from_username + ' ' + hashtag
 		results.each do |result|
 
