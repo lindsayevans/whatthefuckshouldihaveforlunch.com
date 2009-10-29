@@ -1,4 +1,3 @@
-
 #========================
 #CONFIG
 #========================
@@ -15,25 +14,28 @@ set :runner, "deploy"
 set :deploy_to, "/var/www/#{application}"
 set :app_server, :passenger
 set :domain, "whatthefuckshouldihaveforlunch.com"
+
 #========================
 #ROLES
 #========================
 role :app, domain
 role :web, domain
 role :db, domain, :primary => true
+
 #========================
 #CUSTOM
 #========================
 namespace :deploy do
-task :start, :roles => :app do
-run "touch #{current_release}/tmp/restart.txt"
+    task :start, :roles => :app do
+	run "touch #{current_release}/tmp/restart.txt"
+    end
+    task :stop, :roles => :app do
+	# Do nothing.
+    end
+    desc "Restart Application"
+    task :restart, :roles => :app do
+	run "touch #{current_release}/tmp/restart.txt"
+    end
 end
-task :stop, :roles => :app do
-# Do nothing.
-end
-desc "Restart Application"
-task :restart, :roles => :app do
-run "touch #{current_release}/tmp/restart.txt"
-end
-end
+
 
