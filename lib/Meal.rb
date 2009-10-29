@@ -1,7 +1,7 @@
 class Meal
 
     def Meal.find_latest
-	self.all.last
+	self.all.empty? ? nil : self.all.last
     end
 
     def Meal.find_random
