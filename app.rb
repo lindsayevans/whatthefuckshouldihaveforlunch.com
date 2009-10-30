@@ -7,7 +7,7 @@ require 'lib/Meal'
 get '/' do
     @meal = Meal.find_latest
 
-    'Nuthin yet' if @meal.nil?'
+    'Nuthin yet' if @meal.nil?
 
     if ((Time.now - @meal[:created_at]) / 60).round > 2880 then
 	@meal = Meal.find_random
