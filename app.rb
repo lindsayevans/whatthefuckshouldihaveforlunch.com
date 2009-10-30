@@ -8,7 +8,7 @@ get '/' do
     @meal = Meal.find_latest
 
     if @meal.nil?
-	'Nuthin yet'
+	'I broke the database, so go eat a sandwich or something.'
     else
 
 	if ((Time.now - @meal[:created_at]) / 60).round > 2880 then
