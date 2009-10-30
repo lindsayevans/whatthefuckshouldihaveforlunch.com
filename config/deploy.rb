@@ -8,12 +8,13 @@ set :repository, "git://github.com/lindsayevans/whatthefuckshouldihaveforlunch.c
 set :branch, "master"
 set :ssh_options, { :forward_agent => true }
 set :stage, :production
-set :user, "deploy"
-set :use_sudo, false
-set :runner, "deploy"
+set :user, "lindsay"
+set :use_sudo, true
+set :runner, "lindsay"
 set :deploy_to, "/var/www/#{application}"
 set :app_server, :passenger
-set :domain, "whatthefuckshouldihaveforlunch.com"
+#set :domain, "whatthefuckshouldihaveforlunch.com"
+set :domain, "linz.id.au"
 
 #========================
 #ROLES
