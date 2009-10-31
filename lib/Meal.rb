@@ -20,7 +20,7 @@ class Meal
     end
 
     def Meal.save o
-	model_file = File.join(@db_path, self.name.to_s.downcase + 's.yaml')
+	model_file = File.join(@@db_path, self.name.to_s.downcase + 's.yaml')
 	fd = File.open(model_file, 'w+')
 	fd.write(YAML::dump(o))
 	fd.close	
