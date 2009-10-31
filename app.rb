@@ -15,9 +15,9 @@ get '/' do
 
 	if ((Time.now - @meal[:created_at]) / 60).round > 2880 then
 	    @meal = Meal.find_random
-	    'Random lunch: ' + @meal[:message]
+	    'Lindsay forgot to eat lunch today, so here\'s a random one: ' + @meal[:message]
 	else
-	    'Latest lunch: ' + @meal[:message]
+	    @meal[:message]
 	end
     end
 
