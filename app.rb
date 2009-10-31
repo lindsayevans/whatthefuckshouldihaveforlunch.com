@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 
-require 'config/environment'
+require 'environment'
 
 # Models
 require 'lib/Meal'
